@@ -1,0 +1,21 @@
+FROM golang:alpine as builder
+
+# download packages caching layer 
+ENV GOPROXY=https://proxy.golang.com.cn,direct
+WORKDIR /app
+ADD go.mod go.sum /app/
+RUN go mod download
+
+# build layer
+ADD . .
+# RUN GOOS=linux GOARCH=amd64 go build -o main -ldflags="-s -w" main.go && chmod +x main
+RUN GOOS=linux GOARCH=amd64 go build -o ./main -ldflags="-s -w" main.go
+# CMD ./main
+# ENTRYPOINT [ "./main" ]
+
+FROM scratch
+EXPOSE 8080
+WORKDIR /
+COPY --from=builder /app/main /app/main
+# ENTRYPOINT [ "/usr/bin/app" ]
+ENTRYPOINT [ "/app/main" ]

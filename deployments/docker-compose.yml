@@ -1,0 +1,15 @@
+services:
+  app:
+    build: .
+    ports:
+      - "8080:8080"
+    depends_on:
+      - redis
+      - mongodb
+    
+  redis:
+    image: redis:5
+
+
+  mongodb:
+    image: mongo:5
