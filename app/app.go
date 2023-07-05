@@ -3,13 +3,11 @@ package app
 import (
 	"c1pherten/yet-webapp2/container"
 	"fmt"
-
-	"github.com/gin-gonic/gin"
 )
 
 // App app instance
 type App struct {
-	server *gin.Engine
+	server *server
 	c      container.Container
 }
 

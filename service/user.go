@@ -8,6 +8,7 @@ import (
 	"context"
 	"time"
 
+	"github.com/google/uuid"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
@@ -76,6 +77,11 @@ func (s *UserService) Login(l dto.Login) (string, error) {
 	}
 
 	return tokenString, err
+}
+
+func (s *UserService) QrcodeID() (string, error) {
+	u := uuid.New()
+	return u.String(), nil
 }
 
 func NewUserService(c container.Container) *UserService {

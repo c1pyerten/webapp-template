@@ -62,5 +62,6 @@ func NewMsgHandler(c container.Container) *msgHandler {
 	return &msgHandler{
 		c:       c,
 		msgRepo: msgRepo,
+
 	}
 }

@@ -12,6 +12,10 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+const (
+	loginTypeQr = "qrcode"
+)
+
 type UserHandler struct {
 	c container.Container
 	s *service.UserService
@@ -83,8 +87,23 @@ func (h *UserHandler) Login(ctx *gin.Context) {
 	
 	api.OK(ctx, token)
 	return
+}
+
+func (h *UserHandler) QrcodeID(ctx *gin.Context) {
+	id, err := h.s.QrcodeID()
+	if err != nil {
+		api.InternalError(ctx, err)
+		return
+	}
+
+	api.OK(ctx, id)
+	return
+}
+
+func (h *UserHandler) QrcodeLogin(ctx *gin.Context) {
 	
 }
+
 
 // func NewUserHandler(s *service.UserService) *UserHandler {
 func NewUserHandler(c container.Container) *UserHandler {

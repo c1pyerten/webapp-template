@@ -21,6 +21,7 @@ func (r *Router) Routes(e *gin.Engine) {
 	userGroup := v1.Group("/user")
 	{
 		userGroup.POST("/login", r.userRouter.Login)
+		userGroup.GET("/login/qrcode", r.userRouter.QrcodeID)
 		userGroup.POST("", r.userRouter.CreateNewUser)
 
 		// login required handlers
