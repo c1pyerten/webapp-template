@@ -13,7 +13,7 @@ type CreateUser struct {
 type Login struct {
 	Name       string `json:"name" filter:"trim" validate:"required|min:3|maxLen:10"`
 	Password   string `json:"password" filter:"trim" validate:"required|minLen:3|maxLen:10"`
-	DeviceType string `json:"deviceType filter:"trim" validate:"required"`
+	DeviceType string `json:"deviceType" filter:"trim" validate:"required|minLen:3"`
 }
 
 // func (u *User) Validate() error {

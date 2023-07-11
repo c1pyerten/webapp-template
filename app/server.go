@@ -10,9 +10,15 @@ import (
 	"github.com/gorilla/websocket"
 )
 
+const (
+	A = iota
+	B
+	C
+)
+
 type server struct {
-	e *gin.Engine
-	ws *websocket.Upgrader
+	engine *gin.Engine
+	ws     *websocket.Upgrader
 }
 
 func newServer(c container.Container) *server {
@@ -31,11 +37,11 @@ func newServer(c container.Container) *server {
 	router.Routes(e)
 
 	return &server{
-		e:  e,
-		ws: ws,
+		engine: e,
+		ws:     ws,
 	}
 }
 
 func (s *server) Run(addr ...string) error {
-	return s.e.Run(addr...)
+	return s.engine.Run(addr...)
 }

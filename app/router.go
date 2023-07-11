@@ -39,12 +39,11 @@ func (r *Router) Routes(e *gin.Engine) {
 	e.NoRoute(noRoute)
 }
 
-// newRouter
+// newRouter init router instance
 func newRouter(c container.Container) *Router {
 	userRouter := handler.NewUserHandler(c)
 	msgRouter := handler.NewMessageHandler(c)
 	wsRouter := handler.NewWsHandler(c)
-
 
 	return &Router{
 		userRouter: userRouter,
