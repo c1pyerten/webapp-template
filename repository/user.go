@@ -1,7 +1,7 @@
 package repository
 
 import (
-	"c1pherten/yet-webapp2/container"
+	"c1pherten/yet-webapp2/appctx"
 	"context"
 	"errors"
 	"time"
@@ -35,7 +35,7 @@ type UserRepository interface {
 type userRepository struct {
 	// db *mongo.Database
 	// client *mongo.Client
-	c container.Container
+	c appctx.Container
 	repository
 }
 
@@ -86,7 +86,7 @@ func (r *userRepository) GetUserByName(ctx context.Context, name, password strin
 	return &u, nil
 }
 
-func NewUserRepository(c container.Container) UserRepository {
+func NewUserRepository(c appctx.Container) UserRepository {
 	return &userRepository{
 		c:          c,
 		repository: NewRepository(c),

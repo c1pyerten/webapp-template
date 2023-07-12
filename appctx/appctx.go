@@ -1,4 +1,4 @@
-package container
+package appctx
 
 import (
 	"c1pherten/yet-webapp2/config"
@@ -15,29 +15,29 @@ type Container interface{
 	// Repository() repository.Repository
 }
 
-type container struct{
+type appCtx struct{
 	logger log.Logger
 	config *config.Config
 	env string
 	// repo repository.Repository
 }
 
-func (c *container) Logger() log.Logger {
+func (c *appCtx) Logger() log.Logger {
 	return c.logger
 }
-func (c *container) Env() string {
+func (c *appCtx) Env() string {
 	return c.env
 }
 // func (c *container) Repository() repository.Repository {
 // 	return c.repo
 // }
-func (c *container) Config() *config.Config {
+func (c *appCtx) Config() *config.Config {
 	return c.config
 }
 
 // NewContainer TODO: add parameters
 func NewContainer(l log.Logger, config *config.Config, env string) Container {
-	return &container{
+	return &appCtx{
 		logger: l,
 		config: config,
 		env:    env,

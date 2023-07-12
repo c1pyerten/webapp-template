@@ -2,14 +2,14 @@ package handler
 
 import (
 	"c1pherten/yet-webapp2/api"
-	"c1pherten/yet-webapp2/container"
+	"c1pherten/yet-webapp2/appctx"
 	"c1pherten/yet-webapp2/service"
 
 	"github.com/gin-gonic/gin"
 )
 
 type MessageHandler struct {
-	c container.Container
+	c appctx.Container
 	s *service.MsgService
 }
 
@@ -22,7 +22,7 @@ func (h *MessageHandler) GetMsgById(ctx *gin.Context) {
 
 }
 
-func NewMessageHandler(c container.Container) *MessageHandler {
+func NewMessageHandler(c appctx.Container) *MessageHandler {
 	return &MessageHandler{
 		c: c,
 	}

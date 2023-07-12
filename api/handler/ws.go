@@ -3,7 +3,7 @@ package handler
 import (
 	"c1pherten/yet-webapp2/api"
 	"c1pherten/yet-webapp2/app/ws"
-	"c1pherten/yet-webapp2/container"
+	"c1pherten/yet-webapp2/appctx"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -15,7 +15,7 @@ var (
 )
 
 type WsHandler struct {
-	c         container.Container
+	c         appctx.Container
 	processor *ws.Processor
 	upgrader  *websocket.Upgrader
 }
@@ -57,7 +57,7 @@ func (w *WsHandler) HandleWs(ctx *gin.Context) {
 
 }
 
-func NewWsHandler(c container.Container) *WsHandler {
+func NewWsHandler(c appctx.Container) *WsHandler {
 	return &WsHandler{
 		c:         c,
 		processor: ws.NewProcessor(c),

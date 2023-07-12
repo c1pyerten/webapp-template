@@ -1,7 +1,7 @@
 package service
 
 import (
-	"c1pherten/yet-webapp2/container"
+	"c1pherten/yet-webapp2/appctx"
 	"c1pherten/yet-webapp2/repository"
 	"context"
 	"time"
@@ -11,7 +11,7 @@ import (
 
 
 type MsgService struct{
-	c container.Container
+	c appctx.Container
 	msgRepo repository.MessageRepository
 }
 
@@ -34,7 +34,7 @@ func (s *MsgService) FindMsgByUserID(id int) ([]*repository.Message, error) {
 	return nil, nil
 }
 
-func NewMsgService(c container.Container) *MsgService {
+func NewMsgService(c appctx.Container) *MsgService {
 	return &MsgService{
 		c: c,
 	}

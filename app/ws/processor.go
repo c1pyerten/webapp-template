@@ -1,7 +1,7 @@
 package ws
 
 import (
-	"c1pherten/yet-webapp2/container"
+	"c1pherten/yet-webapp2/appctx"
 	"encoding/json"
 	"errors"
 	"fmt"
@@ -13,7 +13,7 @@ var (
 )
 
 type Processor struct {
-	c container.Container
+	c appctx.Container
 	msgHandle msgHandler
 	msgInfos map[string]*msgInfo
 }
@@ -150,7 +150,7 @@ func (p *Processor) Handle(raw []byte) (any, error) {
 	return p.call(v)
 }
 
-func NewProcessor(c container.Container) *Processor {
+func NewProcessor(c appctx.Container) *Processor {
 	p := &Processor{
 		c:        c,
 		msgInfos: make(map[string]*msgInfo),

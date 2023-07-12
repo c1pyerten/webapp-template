@@ -1,7 +1,7 @@
 package ws
 
 import (
-	"c1pherten/yet-webapp2/container"
+	"c1pherten/yet-webapp2/appctx"
 	"c1pherten/yet-webapp2/repository"
 	"encoding/json"
 )
@@ -32,7 +32,7 @@ type PrivateMsg struct {
 type Tick struct{}
 
 type msgHandler struct {
-	c       container.Container
+	c       appctx.Container
 	msgRepo repository.MessageRepository
 }
 
@@ -57,7 +57,7 @@ func (h *msgHandler) handlePublicMsg() (*PublicMsg, HandleFunc) {
 	}
 }
 
-func NewMsgHandler(c container.Container) *msgHandler {
+func NewMsgHandler(c appctx.Container) *msgHandler {
 	msgRepo := repository.NewMessageRepository(c)
 	return &msgHandler{
 		c:       c,

@@ -1,14 +1,14 @@
 package app
 
 import (
-	"c1pherten/yet-webapp2/container"
+	"c1pherten/yet-webapp2/appctx"
 	"fmt"
 )
 
 // App app instance
 type App struct {
 	server *server
-	c      container.Container
+	c      appctx.Container
 }
 
 // Run app running interface
@@ -26,7 +26,7 @@ func (a *App) Run(addr string) {
 }
 
 // NewApp init app instance
-func NewApp(c container.Container) *App {
+func NewApp(c appctx.Container) *App {
 	server := newServer(c)
 	return &App{
 		server: server,

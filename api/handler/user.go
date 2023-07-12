@@ -2,7 +2,7 @@ package handler
 
 import (
 	"c1pherten/yet-webapp2/api"
-	"c1pherten/yet-webapp2/container"
+	"c1pherten/yet-webapp2/appctx"
 	"c1pherten/yet-webapp2/dto"
 	"c1pherten/yet-webapp2/middleware"
 	// "c1pherten/yet-webapp2/repository"
@@ -17,7 +17,7 @@ const (
 )
 
 type UserHandler struct {
-	c container.Container
+	c appctx.Container
 	s *service.UserService
 	msgService *service.MsgService
 	
@@ -106,7 +106,7 @@ func (h *UserHandler) QrcodeLogin(ctx *gin.Context) {
 
 
 // func NewUserHandler(s *service.UserService) *UserHandler {
-func NewUserHandler(c container.Container) *UserHandler {
+func NewUserHandler(c appctx.Container) *UserHandler {
 	s := service.NewUserService(c)
 	msgService := service.NewMsgService(c)
 	

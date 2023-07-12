@@ -2,7 +2,7 @@ package repository
 
 import (
 	"c1pherten/yet-webapp2/config"
-	"c1pherten/yet-webapp2/container"
+	"c1pherten/yet-webapp2/appctx"
 	"context"
 	"time"
 
@@ -14,7 +14,7 @@ import (
 // type Repository interface { }
 
 type repository struct {
-	c container.Container
+	c appctx.Container
 	db *mongo.Database
 	mongoClient *mongo.Client
 	redisClient *redis.Client
@@ -49,8 +49,8 @@ func connectRedis(c config.Config) *redis.Client {
 	return cli
 }
 
-// func NewRepository(c container.Container) * {
-func NewRepository(c container.Container) repository {
+// func NewRepository(c appctx.Container) * {
+func NewRepository(c appctx.Container) repository {
 	db, mCli := connectMongo(*c.Config())
 	redisCli := connectRedis(*c.Config())
 	return repository{

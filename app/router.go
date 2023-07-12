@@ -3,7 +3,7 @@ package app
 import (
 	"c1pherten/yet-webapp2/api"
 	"c1pherten/yet-webapp2/api/handler"
-	"c1pherten/yet-webapp2/container"
+	"c1pherten/yet-webapp2/appctx"
 	"c1pherten/yet-webapp2/middleware"
 	"net/http"
 
@@ -40,7 +40,7 @@ func (r *Router) Routes(e *gin.Engine) {
 }
 
 // newRouter init router instance
-func newRouter(c container.Container) *Router {
+func newRouter(c appctx.Container) *Router {
 	userRouter := handler.NewUserHandler(c)
 	msgRouter := handler.NewMessageHandler(c)
 	wsRouter := handler.NewWsHandler(c)

@@ -1,7 +1,7 @@
 package app
 
 import (
-	"c1pherten/yet-webapp2/container"
+	"c1pherten/yet-webapp2/appctx"
 	"c1pherten/yet-webapp2/middleware"
 
 	"github.com/gin-contrib/cors"
@@ -21,7 +21,7 @@ type server struct {
 	ws     *websocket.Upgrader
 }
 
-func newServer(c container.Container) *server {
+func newServer(c appctx.Container) *server {
 	ws := newWs()
 	e := gin.Default()
 

@@ -1,7 +1,7 @@
 package repository
 
 import (
-	"c1pherten/yet-webapp2/container"
+	"c1pherten/yet-webapp2/appctx"
 	"context"
 	"time"
 
@@ -32,7 +32,7 @@ type MessageRepository interface {
 }
 
 type messageRepository struct {
-	c container.Container
+	c appctx.Container
 	repository
 }
 
@@ -110,7 +110,7 @@ func (r *messageRepository) DeleteMsg(ctx context.Context, id primitive.ObjectID
 	return nil
 }
 
-func NewMessageRepository(c container.Container) MessageRepository {
+func NewMessageRepository(c appctx.Container) MessageRepository {
 	return &messageRepository{
 		c:          c,
 		repository: NewRepository(c),

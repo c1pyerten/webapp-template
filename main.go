@@ -3,7 +3,7 @@ package main
 import (
 	"c1pherten/yet-webapp2/app"
 	"c1pherten/yet-webapp2/config"
-	"c1pherten/yet-webapp2/container"
+	"c1pherten/yet-webapp2/appctx"
 	"c1pherten/yet-webapp2/log"
 	"embed"
 )
@@ -22,7 +22,7 @@ func main() {
 	l.Info(env)
 	l.Info(messages)
 
-	container := container.NewContainer(l, cfg, env)
+	container := appctx.NewContainer(l, cfg, env)
 
 	app := app.NewApp(container)
 	app.Run("0.0.0.0:8080")

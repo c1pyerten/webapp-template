@@ -1,7 +1,7 @@
 package service
 
 import (
-	"c1pherten/yet-webapp2/container"
+	"c1pherten/yet-webapp2/appctx"
 	"c1pherten/yet-webapp2/dto"
 	"c1pherten/yet-webapp2/middleware"
 	"c1pherten/yet-webapp2/repository"
@@ -13,7 +13,7 @@ import (
 )
 
 type UserService struct {
-	c        container.Container
+	c        appctx.Container
 	userRepo repository.UserRepository
 }
 
@@ -84,7 +84,7 @@ func (s *UserService) QrcodeID() (string, error) {
 	return u.String(), nil
 }
 
-func NewUserService(c container.Container) *UserService {
+func NewUserService(c appctx.Container) *UserService {
 	repo := repository.NewUserRepository(c)
 	return &UserService{
 		c:        c,

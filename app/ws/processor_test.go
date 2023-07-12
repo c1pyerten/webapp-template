@@ -1,7 +1,7 @@
 package ws
 
 import (
-	"c1pherten/yet-webapp2/container"
+	"c1pherten/yet-webapp2/appctx"
 	"reflect"
 	"testing"
 )
@@ -68,7 +68,7 @@ func TestSetHandler(t *testing.T) {
 		Name string
 	}
 
-	c := container.NewContainer(nil, nil, "")
+	c := appctx.NewContainer(nil, nil, "")
 	p := NewProcessor(c)
 	var u *User
 	p.SetHandler(u, func (v interface{}) (any, error) {
