@@ -28,7 +28,6 @@ type Claim struct {
 	User *repository.User
 }
 
-
 func Auth(ctx *gin.Context) {
 	tokenString := ctx.Request.Header.Get(authHeader)
 	tokenString = strings.TrimSpace(tokenString)
@@ -38,7 +37,7 @@ func Auth(ctx *gin.Context) {
 	}
 
 	tokenString = tokenString[len(tokenPrefix):]
-	token, err := jwt.ParseWithClaims(tokenString, &Claim{},func(token *jwt.Token) (interface{}, error) {
+	token, err := jwt.ParseWithClaims(tokenString, &Claim{}, func(token *jwt.Token) (interface{}, error) {
 		if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
 			return nil, ErrInvalidToken
 		}
@@ -60,10 +59,10 @@ func Auth(ctx *gin.Context) {
 func newClaim(u *repository.User) *Claim {
 	return &Claim{
 		RegisteredClaims: jwt.RegisteredClaims{
-			Issuer: "webapp",
+			Issuer:   "webapp",
 			IssuedAt: jwt.NewNumericDate(time.Now()),
 		},
-		User:             u,
+		User: u,
 	}
 }
 
@@ -73,6 +72,6 @@ func Sign(u *repository.User) (string, error) {
 	if err != nil {
 		return "", err
 	}
-	
+
 	return tokenString, nil
 }
